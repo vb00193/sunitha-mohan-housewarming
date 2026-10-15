@@ -31,6 +31,21 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
 .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:0; border-radius:999px; padding:12px 17px; background:#25483a; color:#fff9e9; text-decoration:none; font:600 12px Arial,sans-serif; cursor:pointer; }
 .btn.secondary { background:transparent; border:1px solid #b68b3b; color:light-dark(#25483a,#f6eddd); }
 .note { font:11px/1.6 Arial,sans-serif; color:light-dark(#7a8178,#b8c1b8); margin:18px auto 0; max-width:480px; }
+.countdown { margin:0 auto 22px; padding:16px; border:1px dashed #c8a45b; border-radius:14px; background:light-dark(#fff7e7,#2b392f); }
+.countdown-label { margin:0 0 10px; font:700 10px Arial,sans-serif; letter-spacing:2px; color:#a5792b; text-transform:uppercase; }
+.countdown-grid { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
+.count-unit { min-width:62px; padding:8px 10px; border-radius:10px; background:light-dark(#edf1e8,#35453a); }
+.count-number { display:block; font-size:24px; color:light-dark(#25483a,#f4e5c4); }
+.count-label { font:10px Arial,sans-serif; color:light-dark(#6f786e,#c9d1c7); text-transform:uppercase; }
+.rsvp { margin:22px auto 0; padding:20px; border:1px solid #d8c28e; border-radius:15px; text-align:left; }
+.rsvp h2 { margin:0 0 8px; text-align:center; font-weight:normal; color:light-dark(#25483a,#f4e5c4); }
+.rsvp-intro { margin:0 0 16px; text-align:center; font:13px/1.6 Arial,sans-serif; color:light-dark(#5b675e,#d4d9d0); }
+.rsvp label { display:block; margin:12px 0 6px; font:600 12px Arial,sans-serif; color:light-dark(#526257,#d6ddcf); }
+.rsvp input,.rsvp select { width:100%; padding:11px 12px; border:1px solid #c8a45b; border-radius:9px; background:light-dark(#fffdf7,#202922); color:light-dark(#29372e,#f6eddd); font:14px Arial,sans-serif; }
+.rsvp-choice { display:flex; gap:10px; flex-wrap:wrap; }
+.rsvp-choice label { display:flex; align-items:center; gap:7px; flex:1; min-width:150px; padding:11px; border:1px solid #d8c28e; border-radius:9px; cursor:pointer; }
+.rsvp-choice input { width:auto; }
+.rsvp .btn { width:100%; margin-top:16px; }
 .footer { text-align:center; padding:19px; background:light-dark(#f4e6c8,#1d2a22); color:light-dark(#5d4a2c,#e5d2a9); font:12px/1.7 Arial,sans-serif; }
 @media (max-width:560px) { .events { grid-template-columns:1fr; } .hero { padding:30px 18px 24px; } }
 @media (prefers-color-scheme:dark) { body { background:#202922; } }
@@ -49,6 +64,15 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
     </header>
     <section class="content">
       <p class="welcome">With immense joy, we invite you and your family to join us for our two-day housewarming ceremony. Your presence and blessings will make this auspicious occasion truly special.</p>
+      <div class="countdown" aria-live="polite">
+        <p class="countdown-label" id="countdownTitle">Counting down to our new beginning</p>
+        <div class="countdown-grid">
+          <div class="count-unit"><strong class="count-number" id="daysLeft">--</strong><span class="count-label">Days</span></div>
+          <div class="count-unit"><strong class="count-number" id="hoursLeft">--</strong><span class="count-label">Hours</span></div>
+          <div class="count-unit"><strong class="count-number" id="minutesLeft">--</strong><span class="count-label">Minutes</span></div>
+          <div class="count-unit"><strong class="count-number" id="secondsLeft">--</strong><span class="count-label">Seconds</span></div>
+        </div>
+      </div>
       <div class="events">
         <article class="event">
           <div class="day">Day One · 31 October 2026</div>
@@ -66,9 +90,22 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
       <div class="venue"><strong>THE VENUE</strong><br><b>Sunitha M and Mohan J</b><br>#470/9, 14th A Cross, Asha Township,<br>Doddagubbi Main Road, Bangalore - 560077</div>
       <div class="buttons">
         <a class="btn" href="https://maps.app.goo.gl/uTK2cBbjH76hqbUXA" target="_blank" rel="noopener">⌖ Get directions</a>
-        <a class="btn secondary" href="https://wa.me/?text=We%20are%20happy%20to%20join%20Sunitha%20M%20and%20Mohan%20J%20for%20their%20housewarming%20celebration!" target="_blank" rel="noopener">♡ RSVP on WhatsApp</a>
         <button class="btn secondary" id="musicBtn" type="button" aria-pressed="false">♫ Play music</button>
       </div>
+      <form class="rsvp" id="rsvpForm">
+        <h2>Will you join us?</h2>
+        <p class="rsvp-intro">Let us know so we can welcome you warmly.</p>
+        <label for="guestName">Your name</label>
+        <input id="guestName" name="guestName" autocomplete="name" placeholder="Enter your name" required>
+        <label>Your response</label>
+        <div class="rsvp-choice">
+          <label><input type="radio" name="attendance" value="will attend" checked> Happily attending</label>
+          <label><input type="radio" name="attendance" value="cannot attend"> Unable to attend</label>
+        </div>
+        <label for="guestCount">Number of guests attending</label>
+        <select id="guestCount" name="guestCount"><option value="1">1 guest</option><option value="2" selected>2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5 or more">5 or more guests</option></select>
+        <button class="btn" type="submit">♡ Send RSVP on WhatsApp</button>
+      </form>
       <p class="note">Tap “Play music” to start the instrumental. Music may require a tap because mobile browsers block autoplay.</p>
       <audio id="bgMusic" src="https://files.catbox.moe/xhntmt.mp3" preload="none" loop></audio>
     </section>
@@ -87,6 +124,30 @@ musicButton.addEventListener('click', async () => {
   }
 });
 audio.addEventListener('ended', () => { musicButton.textContent = '♫ Play music'; musicButton.setAttribute('aria-pressed','false'); });
+const countdownTarget = new Date(2026, 9, 31, 18, 0, 0).getTime();
+function updateCountdown() {
+  const remaining = countdownTarget - Date.now();
+  if (remaining <= 0) {
+    document.getElementById('countdownTitle').textContent = 'Our housewarming celebration has begun!';
+    ['daysLeft','hoursLeft','minutesLeft','secondsLeft'].forEach(id => document.getElementById(id).textContent = '0');
+    return;
+  }
+  document.getElementById('daysLeft').textContent = Math.floor(remaining / 86400000);
+  document.getElementById('hoursLeft').textContent = Math.floor((remaining % 86400000) / 3600000);
+  document.getElementById('minutesLeft').textContent = Math.floor((remaining % 3600000) / 60000);
+  document.getElementById('secondsLeft').textContent = Math.floor((remaining % 60000) / 1000);
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+document.getElementById('rsvpForm').addEventListener('submit', event => {
+  event.preventDefault();
+  const name = document.getElementById('guestName').value.trim();
+  const attendance = document.querySelector('input[name="attendance"]:checked').value;
+  const guests = document.getElementById('guestCount').value;
+  const guestLine = attendance === 'will attend' ? `Number of guests: ${guests}` : 'Number of guests: not applicable';
+  const message = `Hello Sunitha and Mohan, this is ${name}. I ${attendance} your housewarming celebration on 31 October and 1 November 2026. ${guestLine}. Thank you for the invitation!`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+});
 </script>
 </body>
 </html>
