@@ -44,6 +44,10 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
 .wishes input,.wishes textarea { width:100%; padding:11px 12px; border:1px solid #c8a45b; border-radius:9px; background:light-dark(#fffdf7,#202922); color:light-dark(#29372e,#f6eddd); font:14px/1.5 Arial,sans-serif; }
 .wishes textarea { min-height:100px; resize:vertical; }
 .wishes .btn { width:100%; margin-top:16px; }
+.music-player { margin:22px auto 0; padding:18px; border:1px solid #d8c28e; border-radius:15px; background:light-dark(#fffdf7,#303e34); }
+.music-player h2 { margin:0 0 8px; font-weight:normal; color:light-dark(#25483a,#f4e5c4); }
+.music-player p { margin:0 0 14px; font:13px/1.6 Arial,sans-serif; color:light-dark(#5b675e,#d4d9d0); }
+.music-frame { display:block; width:100%; max-width:480px; aspect-ratio:9/16; min-height:280px; max-height:520px; margin:0 auto; border:0; border-radius:12px; background:#000; }
 .footer { text-align:center; padding:19px; background:light-dark(#f4e6c8,#1d2a22); color:light-dark(#5d4a2c,#e5d2a9); font:12px/1.7 Arial,sans-serif; }
 @media (max-width:560px) { .events { grid-template-columns:1fr; } .hero { padding:30px 18px 24px; } }
 @media (prefers-color-scheme:dark) { body { background:#202922; } }
@@ -88,8 +92,12 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
       <div class="venue"><strong>THE VENUE</strong><br><b>Sunitha M and Mohan J</b><br>#470/9, 14th A Cross, Asha Township,<br>Doddagubbi Main Road, Bangalore - 560077</div>
       <div class="buttons">
         <a class="btn" href="https://maps.app.goo.gl/uTK2cBbjH76hqbUXA" target="_blank" rel="noopener">⌖ Get directions</a>
-        <button class="btn secondary" id="musicBtn" type="button" aria-pressed="false">♫ Play music</button>
       </div>
+      <section class="music-player" aria-labelledby="musicTitle">
+        <h2 id="musicTitle">Music for the Occasion</h2>
+        <p>Tap play on the video below to enjoy the music during your visit.</p>
+        <iframe class="music-frame" src="https://www.youtube-nocookie.com/embed/OfDt-REZUoA?playsinline=1" title="Housewarming music from YouTube" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </section>
       <form class="wishes" id="wishesForm">
         <h2>Share Your Best Wishes</h2>
         <p class="wishes-intro">Your blessings and kind words will make our new beginning even more special.</p>
@@ -99,24 +107,12 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
         <textarea id="wishMessage" name="wishMessage" placeholder="Write your heartfelt wishes here…" required></textarea>
         <button class="btn" type="submit">♡ Send Best Wishes on WhatsApp</button>
       </form>
-      <p class="note">Tap “Play music” to start the instrumental. Music may require a tap because mobile browsers block autoplay.</p>
-      <audio id="bgMusic" src="https://files.catbox.moe/xhntmt.mp3" preload="none" loop></audio>
+      <p class="note">YouTube playback requires an internet connection. If the video owner has disabled embedding, use the YouTube link to play it directly.</p>
     </section>
     <footer class="footer">May this home be filled with peace, prosperity, laughter and love.<br><b>With warm regards,<br>Sunitha M and Mohan J</b></footer>
   </main>
 </div>
 <script>
-const musicButton = document.getElementById('musicBtn');
-const audio = document.getElementById('bgMusic');
-musicButton.addEventListener('click', async () => {
-  if (audio.paused) {
-    try { await audio.play(); musicButton.textContent = 'Ⅱ Pause music'; musicButton.setAttribute('aria-pressed','true'); }
-    catch { musicButton.textContent = 'Tap to retry music'; }
-  } else {
-    audio.pause(); musicButton.textContent = '♫ Play music'; musicButton.setAttribute('aria-pressed','false');
-  }
-});
-audio.addEventListener('ended', () => { musicButton.textContent = '♫ Play music'; musicButton.setAttribute('aria-pressed','false'); });
 const countdownTarget = new Date(2026, 9, 31, 18, 0, 0).getTime();
 function updateCountdown() {
   const remaining = countdownTarget - Date.now();
