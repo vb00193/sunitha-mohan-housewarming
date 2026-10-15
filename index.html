@@ -82,7 +82,7 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
 .wishes textarea { min-height:100px; resize:vertical; }
 .wishes .btn { width:100%; margin-top:16px; }
 .footer { text-align:center; padding:19px; background:#4b1722; color:#f5dfad; font:12px/1.7 Arial,sans-serif; }
-#backgroundMusic { display:none; }
+#backgroundMusic { display:none !important; visibility:hidden !important; width:0; height:0; }
 @media (max-width:560px) { .events { grid-template-columns:1fr; } .hero { padding:30px 18px 24px; } .door-stage { width:82vw; min-height:380px; } }
 @media (prefers-reduced-motion:reduce) { *,*:before,*:after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } }
 @media (prefers-color-scheme:dark) { body { background:#202922; } }
@@ -97,10 +97,10 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
     </div>
     <div class="door-leaf"><span class="door-knob"></span></div>
   </div>
-  <button class="open-invite" id="openInvite" type="button">✧ Open Invitation ✧</button>
+  <button class="open-invite" id="openInvite" type="button">Open Invitation</button>
   <p class="door-hint">Tap to open the doors and reveal the celebration</p>
 </div>
-<audio id="backgroundMusic" preload="auto" loop playsinline aria-hidden="true"><source src="https://drive.google.com/uc?export=download&amp;id=1CqBksgtxsDXLoQuA91IQchfxeFEOa5nM" type="audio/mpeg"></audio>
+<audio id="backgroundMusic" preload="auto" loop playsinline aria-hidden="true"><source src="https://files.catbox.moe/xhntmt.mp3" type="audio/mpeg"></audio>
 <div id="app">
   <main class="invite">
     <header class="hero">
