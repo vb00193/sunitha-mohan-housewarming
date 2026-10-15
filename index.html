@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Housewarming Invitation</title>
+<style>
+:root { color-scheme: light dark; --green:#25483a; --gold:#c49a4a; --cream:#fff8eb; --ink:#29372e; --muted:#6f786e; }
+* { box-sizing:border-box; }
+body { margin:0; font-family: Georgia, 'Times New Roman', serif; background:#eee5d5; color:var(--ink); }
+#app { min-height:100vh; background:light-dark(#f8f0e2,#202922); color:light-dark(#29372e,#f6eddd); padding:24px 14px 36px; }
+.invite { max-width:720px; margin:0 auto; overflow:hidden; border:1px solid var(--gold); border-radius:22px; background:light-dark(#fffaf0,#27362e); box-shadow:0 18px 50px #14271d20; }
+.hero { text-align:center; padding:38px 24px 28px; background:radial-gradient(circle at top, #f5dfae 0, #fff7e8 48%, #e9f0e5 100%); color:#25483a; position:relative; }
+.family-photo { display:block; width:min(100%, 420px); max-height:300px; object-fit:cover; margin:0 auto 22px; border:4px solid #fffaf0; outline:1px solid #c8a45b; border-radius:14px; box-shadow:0 8px 24px #14271d20; }
+.mandala { font-size:32px; color:#ad7c29; letter-spacing:7px; }
+.eyebrow { margin:12px 0 8px; text-transform:uppercase; letter-spacing:3px; font:600 11px Arial,sans-serif; color:#85652d; }
+h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margin:0; }
+.subtitle { font:15px/1.7 Arial,sans-serif; max-width:480px; margin:16px auto 0; color:#53685a; }
+.divider { display:flex; align-items:center; gap:12px; color:#b68b3b; justify-content:center; margin:20px 0 0; }
+.divider:before,.divider:after { content:''; width:64px; height:1px; background:#c8a45b; }
+.content { padding:28px clamp(18px,5vw,42px) 34px; text-align:center; }
+.welcome { font:15px/1.8 Arial,sans-serif; margin:0 auto 24px; max-width:560px; color:light-dark(#526257,#d6ddcf); }
+.events { display:grid; grid-template-columns:1fr 1fr; gap:14px; text-align:left; }
+.event { padding:19px 17px; border:1px solid #d8c28e; border-radius:15px; background:light-dark(#fffdf7,#303e34); }
+.day { font:700 10px Arial,sans-serif; letter-spacing:2px; color:#a5792b; text-transform:uppercase; }
+.event h2 { font-size:23px; font-weight:normal; color:light-dark(#25483a,#f4e5c4); margin:8px 0 12px; }
+.detail { font:13px/1.7 Arial,sans-serif; color:light-dark(#5b675e,#d4d9d0); margin:4px 0; }
+.venue { margin:22px auto; padding:17px; background:light-dark(#edf1e8,#334239); border-radius:13px; font:13px/1.8 Arial,sans-serif; }
+.venue strong { letter-spacing:1px; font-size:11px; color:#a5792b; }
+.buttons { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px; }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:0; border-radius:999px; padding:12px 17px; background:#25483a; color:#fff9e9; text-decoration:none; font:600 12px Arial,sans-serif; cursor:pointer; }
+.btn.secondary { background:transparent; border:1px solid #b68b3b; color:light-dark(#25483a,#f6eddd); }
+.note { font:11px/1.6 Arial,sans-serif; color:light-dark(#7a8178,#b8c1b8); margin:18px auto 0; max-width:480px; }
+.footer { text-align:center; padding:19px; background:light-dark(#f4e6c8,#1d2a22); color:light-dark(#5d4a2c,#e5d2a9); font:12px/1.7 Arial,sans-serif; }
+@media (max-width:560px) { .events { grid-template-columns:1fr; } .hero { padding:30px 18px 24px; } }
+@media (prefers-color-scheme:dark) { body { background:#202922; } }
+</style>
+</head>
+<body>
+<div id="app">
+  <main class="invite">
+    <header class="hero">
+      <div class="mandala">✺ ❋ ✺</div>
+      <p class="eyebrow">With love and blessings</p>
+      <img class="family-photo" src="https://drive.google.com/uc?export=view&id=15Z7iLv8CUPpLOdVYWZMC0vuqFbxK9l8T" alt="Housewarming invitation photo" onerror="this.style.display='none'">
+      <h1>Our New<br>Home</h1>
+      <div class="divider">ॐ</div>
+      <p class="subtitle">A new beginning, a place for beautiful memories.<br>We would be delighted to celebrate with you.</p>
+    </header>
+    <section class="content">
+      <p class="welcome">With immense joy, we invite you and your family to join us for our two-day housewarming ceremony. Your presence and blessings will make this auspicious occasion truly special.</p>
+      <div class="events">
+        <article class="event">
+          <div class="day">Day One · 31 October 2026</div>
+          <h2>Vastu Homa</h2>
+          <p class="detail">◷ Time to be confirmed</p>
+          <p class="detail">Join us for an auspicious beginning in our new home.</p>
+        </article>
+        <article class="event">
+          <div class="day">Day Two · 1 November 2026</div>
+          <h2>Sathya Narayana Pooja</h2>
+          <p class="detail">◷ Sathya Narayana Pooja: 10:00 AM onwards</p>
+          <p class="detail">Lunch will be served from 12:30 PM onwards.</p>
+          <p class="detail">Evening: 6:00 PM onwards</p>
+        </article>
+      </div>
+      <div class="venue"><strong>THE VENUE</strong><br><b>Sunitha M and Mohan J</b><br>#470/9, 14th A Cross, Asha Township,<br>Doddagubbi Main Road, Bangalore - 560077</div>
+      <div class="buttons">
+        <a class="btn" href="https://maps.app.goo.gl/uTK2cBbjH76hqbUXA" target="_blank" rel="noopener">⌖ Get directions</a>
+        <a class="btn secondary" href="https://wa.me/?text=We%20are%20happy%20to%20join%20Sunitha%20M%20and%20Mohan%20J%20for%20their%20housewarming%20celebration!" target="_blank" rel="noopener">♡ RSVP on WhatsApp</a>
+        <button class="btn secondary" id="musicBtn" type="button" aria-pressed="false">♫ Play music</button>
+      </div>
+      <p class="note">Tap “Play music” to start the instrumental. Music may require a tap because mobile browsers block autoplay.</p>
+      <audio id="bgMusic" src="https://files.catbox.moe/xhntmt.mp3" preload="none" loop></audio>
+    </section>
+    <footer class="footer">May this home be filled with peace, prosperity, laughter and love.<br><b>With warm regards,<br>Sunitha M and Mohan J</b></footer>
+  </main>
+</div>
+<script>
+const musicButton = document.getElementById('musicBtn');
+const audio = document.getElementById('bgMusic');
+musicButton.addEventListener('click', async () => {
+  if (audio.paused) {
+    try { await audio.play(); musicButton.textContent = 'Ⅱ Pause music'; musicButton.setAttribute('aria-pressed','true'); }
+    catch { musicButton.textContent = 'Tap to retry music'; }
+  } else {
+    audio.pause(); musicButton.textContent = '♫ Play music'; musicButton.setAttribute('aria-pressed','false');
+  }
+});
+audio.addEventListener('ended', () => { musicButton.textContent = '♫ Play music'; musicButton.setAttribute('aria-pressed','false'); });
+</script>
+</body>
+</html>
