@@ -97,14 +97,6 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
   <button class="open-invite" id="openInvite" type="button">✧ Open Invitation ✧</button>
   <p class="door-hint">Tap to open the doors and reveal the celebration</p>
 </div>
-<section class="welcome-slide" id="welcomeSlide" aria-hidden="true">
-  <div class="welcome-card">
-    <div class="welcome-om">ॐ</div>
-    <h2>Sunitha &amp;<br>Mohan</h2>
-    <p>WARMLY INVITE YOU TO CELEBRATE<br>THEIR NEW HOME</p>
-    <button class="open-invite continue-invite" id="continueInvite" type="button">Continue to Invitation ✧</button>
-  </div>
-</section>
 <div id="app">
   <main class="invite">
     <header class="hero">
@@ -160,8 +152,6 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
 <script>
 const doorScreen = document.getElementById('doorScreen');
 const openInvite = document.getElementById('openInvite');
-const welcomeSlide = document.getElementById('welcomeSlide');
-const continueInvite = document.getElementById('continueInvite');
 function revealInvitation() {
   if (doorScreen.classList.contains('opening')) return;
   doorScreen.classList.add('opening');
@@ -169,18 +159,11 @@ function revealInvitation() {
   window.setTimeout(() => {
     doorScreen.classList.add('dismissed');
     doorScreen.setAttribute('aria-hidden','true');
-    welcomeSlide.classList.add('visible');
-    welcomeSlide.setAttribute('aria-hidden','false');
+    document.body.classList.add('invitation-open');
+    document.getElementById('app').scrollIntoView({behavior:'smooth',block:'start'});
   }, 3500);
 }
 openInvite.addEventListener('click', revealInvitation);
-continueInvite.addEventListener('click', () => {
-  welcomeSlide.classList.remove('visible');
-  welcomeSlide.setAttribute('aria-hidden','true');
-  document.body.classList.add('invitation-open');
-  document.getElementById('app').scrollIntoView({behavior:'smooth',block:'start'});
-  window.setTimeout(() => { welcomeSlide.style.display = 'none'; }, 1300);
-});
 // Keep the invitation welcoming for keyboard users too.
 doorScreen.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { if (event.target === doorScreen) { event.preventDefault(); revealInvitation(); } } });
 // Floating marigold petals and tiny auspicious sparkles drift behind the invitation.
