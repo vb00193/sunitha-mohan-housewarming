@@ -5,50 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Housewarming Invitation</title>
 <style>
-:root { color-scheme: light dark; --green:#25483a; --gold:#c49a4a; --cream:#fff8eb; --ink:#29372e; --muted:#6f786e; }
+:root { color-scheme: light; --green:#4b1722; --gold:#d4ad62; --cream:#fff5e3; --ink:#3b2020; --muted:#806a5c; }
 * { box-sizing:border-box; }
-body { margin:0; font-family: Georgia, 'Times New Roman', serif; background:#eee5d5; color:var(--ink); }
-#app { min-height:100vh; background:light-dark(#f8f0e2,#202922); color:light-dark(#29372e,#f6eddd); padding:24px 14px 36px; }
-.invite { max-width:720px; margin:0 auto; overflow:hidden; border:1px solid var(--gold); border-radius:22px; background:light-dark(#fffaf0,#27362e); box-shadow:0 18px 50px #14271d20; }
-.hero { text-align:center; padding:38px 24px 28px; background:radial-gradient(circle at top, #f5dfae 0, #fff7e8 48%, #e9f0e5 100%); color:#25483a; position:relative; }
-.family-photo { display:block; width:min(100%, 420px); max-height:300px; object-fit:cover; margin:0 auto 22px; border:4px solid #fffaf0; outline:1px solid #c8a45b; border-radius:14px; box-shadow:0 8px 24px #14271d20; }
-.mandala { font-size:32px; color:#ad7c29; letter-spacing:7px; }
-.eyebrow { margin:12px 0 8px; text-transform:uppercase; letter-spacing:3px; font:600 11px Arial,sans-serif; color:#85652d; }
-h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margin:0; }
-.subtitle { font:15px/1.7 Arial,sans-serif; max-width:480px; margin:16px auto 0; color:#53685a; }
-.divider { display:flex; align-items:center; gap:12px; color:#b68b3b; justify-content:center; margin:20px 0 0; }
+body { margin:0; font-family: Georgia, 'Times New Roman', serif; background:#3b101b; color:var(--ink); }
+#app { min-height:100vh; background:radial-gradient(ellipse at top,#7a2930 0,#3b101b 62%); color:var(--ink); padding:24px 14px 36px; }
+.invite { max-width:720px; margin:0 auto; overflow:hidden; border:2px solid var(--gold); border-radius:8px; background:#fff8ec; box-shadow:0 18px 50px #16070b70; }
+.hero { text-align:center; padding:38px 24px 30px; background:linear-gradient(180deg,#f5dfad 0,#fff5e3 55%,#f4e6cc 100%); color:#4b1722; position:relative; border:8px double #d4ad62; outline:1px solid #4b1722; outline-offset:-15px; }
+.family-photo { display:block; width:min(100%, 420px); max-height:300px; object-fit:cover; margin:0 auto 22px; border:5px solid #fff8ec; outline:2px solid #b98739; border-radius:48% 48% 12px 12px; box-shadow:0 8px 24px #4b172230; }
+.mandala { font-size:32px; color:#9e6324; letter-spacing:7px; }
+.eyebrow { margin:12px 0 8px; text-transform:uppercase; letter-spacing:3px; font:600 11px Arial,sans-serif; color:#8d5424; }
+h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margin:0; color:#4b1722; text-shadow:0 1px 0 #f0d7a1; }
+.subtitle { font:15px/1.7 Arial,sans-serif; max-width:480px; margin:16px auto 0; color:#704d3c; }
+.divider { display:flex; align-items:center; gap:12px; color:#a96f28; justify-content:center; margin:20px 0 0; }
 .divider:before,.divider:after { content:''; width:64px; height:1px; background:#c8a45b; }
 .content { padding:28px clamp(18px,5vw,42px) 34px; text-align:center; }
-.welcome { font:15px/1.8 Arial,sans-serif; margin:0 auto 24px; max-width:560px; color:light-dark(#526257,#d6ddcf); }
+.welcome { font:15px/1.8 Arial,sans-serif; margin:0 auto 24px; max-width:560px; color:#6c5144; }
 .events { display:grid; grid-template-columns:1fr 1fr; gap:14px; text-align:left; }
-.event { padding:19px 17px; border:1px solid #d8c28e; border-radius:15px; background:light-dark(#fffdf7,#303e34); }
+.event { padding:19px 17px; border:1px solid #d8c28e; border-radius:8px; background:#fffaf0; box-shadow:inset 0 0 0 3px #f8edda; }
 .day { font:700 10px Arial,sans-serif; letter-spacing:2px; color:#a5792b; text-transform:uppercase; }
-.event h2 { font-size:23px; font-weight:normal; color:light-dark(#25483a,#f4e5c4); margin:8px 0 12px; }
-.detail { font:13px/1.7 Arial,sans-serif; color:light-dark(#5b675e,#d4d9d0); margin:4px 0; }
-.venue { margin:22px auto; padding:17px; background:light-dark(#edf1e8,#334239); border-radius:13px; font:13px/1.8 Arial,sans-serif; }
+.event h2 { font-size:23px; font-weight:normal; color:#4b1722; margin:8px 0 12px; }
+.detail { font:13px/1.7 Arial,sans-serif; color:#6b5548; margin:4px 0; }
+.venue { margin:22px auto; padding:17px; background:#f6ead3; border:1px solid #ddc58f; border-radius:8px; font:13px/1.8 Arial,sans-serif; }
 .venue strong { letter-spacing:1px; font-size:11px; color:#a5792b; }
 .buttons { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px; }
-.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:0; border-radius:999px; padding:12px 17px; background:#25483a; color:#fff9e9; text-decoration:none; font:600 12px Arial,sans-serif; cursor:pointer; }
-.btn.secondary { background:transparent; border:1px solid #b68b3b; color:light-dark(#25483a,#f6eddd); }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:0; border-radius:4px; padding:12px 17px; background:#4b1722; color:#fff5e3; text-decoration:none; font:600 12px Arial,sans-serif; cursor:pointer; }
+.btn.secondary { background:transparent; border:1px solid #b68b3b; color:#4b1722; }
 .note { font:11px/1.6 Arial,sans-serif; color:light-dark(#7a8178,#b8c1b8); margin:18px auto 0; max-width:480px; }
-.countdown { margin:0 auto 22px; padding:16px; border:1px dashed #c8a45b; border-radius:14px; background:light-dark(#fff7e7,#2b392f); }
+.countdown { margin:0 auto 22px; padding:16px; border:1px dashed #c8a45b; border-radius:8px; background:#fff3dc; }
 .countdown-label { margin:0 0 10px; font:700 10px Arial,sans-serif; letter-spacing:2px; color:#a5792b; text-transform:uppercase; }
 .countdown-grid { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
-.count-unit { min-width:62px; padding:8px 10px; border-radius:10px; background:light-dark(#edf1e8,#35453a); }
-.count-number { display:block; font-size:24px; color:light-dark(#25483a,#f4e5c4); }
-.count-label { font:10px Arial,sans-serif; color:light-dark(#6f786e,#c9d1c7); text-transform:uppercase; }
-.wishes { margin:22px auto 0; padding:20px; border:1px solid #d8c28e; border-radius:15px; text-align:left; background:light-dark(#fffdf7,#303e34); }
-.wishes h2 { margin:0 0 8px; text-align:center; font-weight:normal; color:light-dark(#25483a,#f4e5c4); }
-.wishes-intro { margin:0 0 16px; text-align:center; font:13px/1.6 Arial,sans-serif; color:light-dark(#5b675e,#d4d9d0); }
-.wishes label { display:block; margin:12px 0 6px; font:600 12px Arial,sans-serif; color:light-dark(#526257,#d6ddcf); }
-.wishes input,.wishes textarea { width:100%; padding:11px 12px; border:1px solid #c8a45b; border-radius:9px; background:light-dark(#fffdf7,#202922); color:light-dark(#29372e,#f6eddd); font:14px/1.5 Arial,sans-serif; }
+.count-unit { min-width:62px; padding:8px 10px; border-radius:4px; background:#f1e2c4; }
+.count-number { display:block; font-size:24px; color:#4b1722; }
+.count-label { font:10px Arial,sans-serif; color:#806a5c; text-transform:uppercase; }
+.wishes { margin:22px auto 0; padding:20px; border:1px solid #d8c28e; border-radius:8px; text-align:left; background:#fffaf0; }
+.wishes h2 { margin:0 0 8px; text-align:center; font-weight:normal; color:#4b1722; }
+.wishes-intro { margin:0 0 16px; text-align:center; font:13px/1.6 Arial,sans-serif; color:#6b5548; }
+.wishes label { display:block; margin:12px 0 6px; font:600 12px Arial,sans-serif; color:#604638; }
+.wishes input,.wishes textarea { width:100%; padding:11px 12px; border:1px solid #c8a45b; border-radius:4px; background:#fffdf7; color:#3b2020; font:14px/1.5 Arial,sans-serif; }
 .wishes textarea { min-height:100px; resize:vertical; }
 .wishes .btn { width:100%; margin-top:16px; }
-.music-player { margin:22px auto 0; padding:18px; border:1px solid #d8c28e; border-radius:15px; background:light-dark(#fffdf7,#303e34); }
-.music-player h2 { margin:0 0 8px; font-weight:normal; color:light-dark(#25483a,#f4e5c4); }
-.music-player p { margin:0 0 14px; font:13px/1.6 Arial,sans-serif; color:light-dark(#5b675e,#d4d9d0); }
-.music-frame { display:block; width:100%; max-width:480px; aspect-ratio:9/16; min-height:280px; max-height:520px; margin:0 auto; border:0; border-radius:12px; background:#000; }
-.footer { text-align:center; padding:19px; background:light-dark(#f4e6c8,#1d2a22); color:light-dark(#5d4a2c,#e5d2a9); font:12px/1.7 Arial,sans-serif; }
+.footer { text-align:center; padding:19px; background:#4b1722; color:#f5dfad; font:12px/1.7 Arial,sans-serif; }
 @media (max-width:560px) { .events { grid-template-columns:1fr; } .hero { padding:30px 18px 24px; } }
 @media (prefers-color-scheme:dark) { body { background:#202922; } }
 </style>
@@ -57,10 +53,10 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
 <div id="app">
   <main class="invite">
     <header class="hero">
-      <div class="mandala">✺ ❋ ✺</div>
+      <div class="mandala">🌿 ✦ 🪔 ✦ 🌿</div>
       <p class="eyebrow">With love and blessings</p>
       <img class="family-photo" src="https://drive.google.com/uc?export=view&id=15Z7iLv8CUPpLOdVYWZMC0vuqFbxK9l8T" alt="Housewarming invitation photo" onerror="this.style.display='none'">
-      <h1>Our New<br>Home</h1>
+      <h1>Housewarming<br>Ceremony</h1>
       <div class="divider">ॐ</div>
       <p class="subtitle">A new beginning, a place for beautiful memories.<br>We would be delighted to celebrate with you.</p>
     </header>
@@ -93,11 +89,6 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
       <div class="buttons">
         <a class="btn" href="https://maps.app.goo.gl/uTK2cBbjH76hqbUXA" target="_blank" rel="noopener">⌖ Get directions</a>
       </div>
-      <section class="music-player" aria-labelledby="musicTitle">
-        <h2 id="musicTitle">Music for the Occasion</h2>
-        <p>Tap play on the video below to enjoy the music during your visit.</p>
-        <iframe class="music-frame" src="https://www.youtube-nocookie.com/embed/OfDt-REZUoA?playsinline=1" title="Housewarming music from YouTube" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </section>
       <form class="wishes" id="wishesForm">
         <h2>Share Your Best Wishes</h2>
         <p class="wishes-intro">Your blessings and kind words will make our new beginning even more special.</p>
@@ -107,7 +98,6 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
         <textarea id="wishMessage" name="wishMessage" placeholder="Write your heartfelt wishes here…" required></textarea>
         <button class="btn" type="submit">♡ Send Best Wishes on WhatsApp</button>
       </form>
-      <p class="note">YouTube playback requires an internet connection. If the player does not work, <a href="https://www.youtube.com/shorts/OfDt-REZUoA" target="_blank" rel="noopener">tap here to play the music on YouTube</a>.</p>
     </section>
     <footer class="footer">May this home be filled with peace, prosperity, laughter and love.<br><b>With warm regards,<br>Sunitha M and Mohan J</b></footer>
   </main>
