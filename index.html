@@ -37,15 +37,13 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
 .count-unit { min-width:62px; padding:8px 10px; border-radius:10px; background:light-dark(#edf1e8,#35453a); }
 .count-number { display:block; font-size:24px; color:light-dark(#25483a,#f4e5c4); }
 .count-label { font:10px Arial,sans-serif; color:light-dark(#6f786e,#c9d1c7); text-transform:uppercase; }
-.rsvp { margin:22px auto 0; padding:20px; border:1px solid #d8c28e; border-radius:15px; text-align:left; }
-.rsvp h2 { margin:0 0 8px; text-align:center; font-weight:normal; color:light-dark(#25483a,#f4e5c4); }
-.rsvp-intro { margin:0 0 16px; text-align:center; font:13px/1.6 Arial,sans-serif; color:light-dark(#5b675e,#d4d9d0); }
-.rsvp label { display:block; margin:12px 0 6px; font:600 12px Arial,sans-serif; color:light-dark(#526257,#d6ddcf); }
-.rsvp input,.rsvp select { width:100%; padding:11px 12px; border:1px solid #c8a45b; border-radius:9px; background:light-dark(#fffdf7,#202922); color:light-dark(#29372e,#f6eddd); font:14px Arial,sans-serif; }
-.rsvp-choice { display:flex; gap:10px; flex-wrap:wrap; }
-.rsvp-choice label { display:flex; align-items:center; gap:7px; flex:1; min-width:150px; padding:11px; border:1px solid #d8c28e; border-radius:9px; cursor:pointer; }
-.rsvp-choice input { width:auto; }
-.rsvp .btn { width:100%; margin-top:16px; }
+.wishes { margin:22px auto 0; padding:20px; border:1px solid #d8c28e; border-radius:15px; text-align:left; background:light-dark(#fffdf7,#303e34); }
+.wishes h2 { margin:0 0 8px; text-align:center; font-weight:normal; color:light-dark(#25483a,#f4e5c4); }
+.wishes-intro { margin:0 0 16px; text-align:center; font:13px/1.6 Arial,sans-serif; color:light-dark(#5b675e,#d4d9d0); }
+.wishes label { display:block; margin:12px 0 6px; font:600 12px Arial,sans-serif; color:light-dark(#526257,#d6ddcf); }
+.wishes input,.wishes textarea { width:100%; padding:11px 12px; border:1px solid #c8a45b; border-radius:9px; background:light-dark(#fffdf7,#202922); color:light-dark(#29372e,#f6eddd); font:14px/1.5 Arial,sans-serif; }
+.wishes textarea { min-height:100px; resize:vertical; }
+.wishes .btn { width:100%; margin-top:16px; }
 .footer { text-align:center; padding:19px; background:light-dark(#f4e6c8,#1d2a22); color:light-dark(#5d4a2c,#e5d2a9); font:12px/1.7 Arial,sans-serif; }
 @media (max-width:560px) { .events { grid-template-columns:1fr; } .hero { padding:30px 18px 24px; } }
 @media (prefers-color-scheme:dark) { body { background:#202922; } }
@@ -92,19 +90,14 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
         <a class="btn" href="https://maps.app.goo.gl/uTK2cBbjH76hqbUXA" target="_blank" rel="noopener">⌖ Get directions</a>
         <button class="btn secondary" id="musicBtn" type="button" aria-pressed="false">♫ Play music</button>
       </div>
-      <form class="rsvp" id="rsvpForm">
-        <h2>Will you join us?</h2>
-        <p class="rsvp-intro">Let us know so we can welcome you warmly.</p>
-        <label for="guestName">Your name</label>
-        <input id="guestName" name="guestName" autocomplete="name" placeholder="Enter your name" required>
-        <label>Your response</label>
-        <div class="rsvp-choice">
-          <label><input type="radio" name="attendance" value="will attend" checked> Happily attending</label>
-          <label><input type="radio" name="attendance" value="cannot attend"> Unable to attend</label>
-        </div>
-        <label for="guestCount">Number of guests attending</label>
-        <select id="guestCount" name="guestCount"><option value="1">1 guest</option><option value="2" selected>2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5 or more">5 or more guests</option></select>
-        <button class="btn" type="submit">♡ Send RSVP on WhatsApp</button>
+      <form class="wishes" id="wishesForm">
+        <h2>Share Your Best Wishes</h2>
+        <p class="wishes-intro">Your blessings and kind words will make our new beginning even more special.</p>
+        <label for="wisherName">Your name</label>
+        <input id="wisherName" name="wisherName" autocomplete="name" placeholder="Enter your name" required>
+        <label for="wishMessage">Your wishes for the family</label>
+        <textarea id="wishMessage" name="wishMessage" placeholder="Write your heartfelt wishes here…" required></textarea>
+        <button class="btn" type="submit">♡ Send Best Wishes on WhatsApp</button>
       </form>
       <p class="note">Tap “Play music” to start the instrumental. Music may require a tap because mobile browsers block autoplay.</p>
       <audio id="bgMusic" src="https://files.catbox.moe/xhntmt.mp3" preload="none" loop></audio>
@@ -139,13 +132,11 @@ function updateCountdown() {
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
-document.getElementById('rsvpForm').addEventListener('submit', event => {
+document.getElementById('wishesForm').addEventListener('submit', event => {
   event.preventDefault();
-  const name = document.getElementById('guestName').value.trim();
-  const attendance = document.querySelector('input[name="attendance"]:checked').value;
-  const guests = document.getElementById('guestCount').value;
-  const guestLine = attendance === 'will attend' ? `Number of guests: ${guests}` : 'Number of guests: not applicable';
-  const message = `Hello Sunitha and Mohan, this is ${name}. I ${attendance} your housewarming celebration on 31 October and 1 November 2026. ${guestLine}. Thank you for the invitation!`;
+  const name = document.getElementById('wisherName').value.trim();
+  const wishes = document.getElementById('wishMessage').value.trim();
+  const message = `Dear Sunitha and Mohan,\n\nBest wishes from ${name}!\n\n${wishes}\n\nWishing you happiness and prosperity in your new home.`;
   window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
 });
 </script>
