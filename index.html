@@ -14,7 +14,7 @@ body { margin:0; font-family: Georgia, 'Times New Roman', serif; background:#210
 .ambient-petal { position:fixed; z-index:4; top:-12vh; left:var(--left); color:var(--petal-color); font-size:var(--size); opacity:0; pointer-events:none; animation:petalFall var(--duration) linear var(--delay) infinite; text-shadow:0 2px 12px #f4dca155; }
 @keyframes starDrift { from { transform:translateY(0); } to { transform:translateY(-100px); } }
 @keyframes petalFall { 0% { transform:translate3d(0,-5vh,0) rotate(0deg); opacity:0; } 12% { opacity:.8; } 88% { opacity:.7; } 100% { transform:translate3d(var(--sway),115vh,0) rotate(560deg); opacity:0; } }
-.door-screen { position:fixed; inset:0; z-index:20; display:grid; place-items:center; overflow:hidden; background:radial-gradient(ellipse at center,#8b3435 0,#3c111d 72%); transition:opacity .8s ease,visibility .8s ease; }
+.door-screen { position:fixed; inset:0; z-index:20; display:grid; place-items:center; overflow:hidden; background:radial-gradient(ellipse at center,#8b3435 0,#3c111d 72%); transition:opacity 1.2s ease,visibility 1.2s ease; }
 .door-screen:before { content:''; position:absolute; inset:14px; border:2px solid #d4ad62; outline:1px solid #d4ad6266; outline-offset:-10px; pointer-events:none; }
 .door-glow { position:absolute; inset:0; background:radial-gradient(ellipse at center,#ffe9ad66 0,transparent 56%); animation:glowPulse 3s ease-in-out infinite alternate; }
 @keyframes glowPulse { from { opacity:.45; transform:scale(.95); } to { opacity:1; transform:scale(1.08); } }
@@ -25,11 +25,18 @@ body { margin:0; font-family: Georgia, 'Times New Roman', serif; background:#210
 .door-inner .om { font-size:40px; color:#f3d48d; }
 .door-inner h1 { color:#fff0c9; font-size:clamp(30px,7vw,45px); text-shadow:0 2px 15px #f4d79555; }
 .door-inner p { font:12px/1.8 Arial,sans-serif; letter-spacing:2px; text-transform:uppercase; color:#f5dba2; }
-.door-leaf { position:absolute; inset:0; transform-origin:left center; transform-style:preserve-3d; transition:transform 1.8s cubic-bezier(.7,0,.2,1); border:8px double #d9b76e; border-radius:180px 180px 5px 5px; background:repeating-linear-gradient(90deg,#6b202c 0,#6b202c 22px,#762a32 24px,#5a1a25 48px); box-shadow:inset 0 0 0 15px #4b1722,inset 0 0 0 17px #d4ad62,8px 0 18px #16070b88; backface-visibility:hidden; }
+.door-leaf { position:absolute; inset:0; transform-origin:left center; transform-style:preserve-3d; transition:transform 3.4s cubic-bezier(.45,.05,.2,1); border:8px double #d9b76e; border-radius:180px 180px 5px 5px; background:repeating-linear-gradient(90deg,#6b202c 0,#6b202c 22px,#762a32 24px,#5a1a25 48px); box-shadow:inset 0 0 0 15px #4b1722,inset 0 0 0 17px #d4ad62,8px 0 18px #16070b88; backface-visibility:hidden; }
 .door-leaf:before { content:'✺'; position:absolute; inset:12% 12% 14%; display:grid; place-items:center; border:2px solid #d4ad62; border-radius:170px 170px 4px 4px; color:#e5c477; font-size:clamp(90px,20vw,155px); text-shadow:0 0 25px #d4ad6255; }
 .door-knob { position:absolute; right:13%; top:53%; width:16px; height:16px; border-radius:50%; background:radial-gradient(circle at 30% 25%,#fff0bd,#b78336 60%,#5a341c); box-shadow:0 0 0 4px #d4ad6244; }
 .door-screen.opening .door-leaf { transform:rotateY(-112deg); }
 .door-screen.dismissed { opacity:0; visibility:hidden; pointer-events:none; }
+.welcome-slide { display:none; position:fixed; inset:0; z-index:21; place-items:center; padding:28px; text-align:center; color:#ffe9b2; background:radial-gradient(ellipse at center,#8b3435 0,#3c111d 72%); opacity:0; transition:opacity 1.2s ease; }
+.welcome-slide.visible { display:grid; opacity:1; }
+.welcome-card { width:min(100%,480px); padding:42px 24px; border:2px solid #d4ad62; outline:1px solid #d4ad6266; outline-offset:-10px; background:linear-gradient(145deg,#4b1722dd,#6b202cdd); box-shadow:0 18px 60px #16070b66; }
+.welcome-card .welcome-om { font-size:38px; color:#f3d48d; }
+.welcome-card h2 { margin:16px 0; color:#fff0c9; font-size:clamp(34px,8vw,54px); font-weight:normal; line-height:1.15; }
+.welcome-card p { color:#f5dba2; font:13px/1.8 Arial,sans-serif; letter-spacing:1px; }
+.continue-invite { margin-top:20px; }
 .open-invite { position:relative; z-index:1; display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:14px 22px; margin-top:15px; border:1px solid #f1d28c; border-radius:4px; background:linear-gradient(135deg,#f5dfad,#d4ad62); color:#4b1722; font:700 12px Arial,sans-serif; letter-spacing:1px; text-transform:uppercase; cursor:pointer; box-shadow:0 5px 25px #16070b55; animation:buttonBreathe 2s ease-in-out infinite; }
 @keyframes buttonBreathe { 0%,100% { box-shadow:0 5px 22px #e7c87822; } 50% { box-shadow:0 5px 32px #e7c87888; } }
 .door-hint { font:11px Arial,sans-serif!important; letter-spacing:1px!important; text-transform:none!important; opacity:.8; }
@@ -90,12 +97,20 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
   <button class="open-invite" id="openInvite" type="button">✧ Open Invitation ✧</button>
   <p class="door-hint">Tap to open the doors and reveal the celebration</p>
 </div>
+<section class="welcome-slide" id="welcomeSlide" aria-hidden="true">
+  <div class="welcome-card">
+    <div class="welcome-om">ॐ</div>
+    <h2>Sunitha &amp;<br>Mohan</h2>
+    <p>WARMLY INVITE YOU TO CELEBRATE<br>THEIR NEW HOME</p>
+    <button class="open-invite continue-invite" id="continueInvite" type="button">Continue to Invitation ✧</button>
+  </div>
+</section>
 <div id="app">
   <main class="invite">
     <header class="hero">
       <div class="mandala">🌿 ✦ 🪔 ✦ 🌿</div>
       <p class="eyebrow">With love and blessings</p>
-      <img class="family-photo" src="https://drive.google.com/thumbnail?id=15Z7iLv8CUPpLOdVYWZMC0vuqFbxK9l8T&sz=w1200" alt="Sunitha and Mohan's family photo" onerror="this.style.display='none'">
+      <img class="family-photo" src="https://drive.google.com/thumbnail?id=15Z7iLv8CUPpLOdVYWZMC0vuqFbxK9l8T&amp;sz=w1200" alt="Sunitha and Mohan's family photo" referrerpolicy="no-referrer" onerror="this.style.display='none'">
       <h1>Housewarming<br>Ceremony</h1>
       <div class="divider">ॐ</div>
       <p class="subtitle">A new beginning, a place for beautiful memories.<br>We would be delighted to celebrate with you.</p>
@@ -145,19 +160,27 @@ h1 { font-size:clamp(34px,7vw,54px); font-weight:normal; line-height:1.06; margi
 <script>
 const doorScreen = document.getElementById('doorScreen');
 const openInvite = document.getElementById('openInvite');
+const welcomeSlide = document.getElementById('welcomeSlide');
+const continueInvite = document.getElementById('continueInvite');
 function revealInvitation() {
   if (doorScreen.classList.contains('opening')) return;
   doorScreen.classList.add('opening');
-  document.body.classList.add('invitation-open');
   openInvite.disabled = true;
-  openInvite.textContent = 'Welcome';
   window.setTimeout(() => {
     doorScreen.classList.add('dismissed');
     doorScreen.setAttribute('aria-hidden','true');
-    document.getElementById('app').scrollIntoView({behavior:'smooth',block:'start'});
-  }, 1500);
+    welcomeSlide.classList.add('visible');
+    welcomeSlide.setAttribute('aria-hidden','false');
+  }, 3500);
 }
 openInvite.addEventListener('click', revealInvitation);
+continueInvite.addEventListener('click', () => {
+  welcomeSlide.classList.remove('visible');
+  welcomeSlide.setAttribute('aria-hidden','true');
+  document.body.classList.add('invitation-open');
+  document.getElementById('app').scrollIntoView({behavior:'smooth',block:'start'});
+  window.setTimeout(() => { welcomeSlide.style.display = 'none'; }, 1300);
+});
 // Keep the invitation welcoming for keyboard users too.
 doorScreen.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { if (event.target === doorScreen) { event.preventDefault(); revealInvitation(); } } });
 // Floating marigold petals and tiny auspicious sparkles drift behind the invitation.
